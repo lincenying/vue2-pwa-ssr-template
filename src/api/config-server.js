@@ -1,4 +1,4 @@
-var LRU = require('lru-cache')
+var lruCache = require('lru-cache')
 
 let api
 if (process.__API__) {
@@ -8,7 +8,7 @@ if (process.__API__) {
         api: 'https://cnodejs.org/api/v1/',
         port: 8080,
         timeout: 30000,
-        cached: LRU({
+        cached: lruCache({
             max: 1000,
             maxAge: 1000 * 60 * 15
         }),
