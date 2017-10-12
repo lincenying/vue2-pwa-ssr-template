@@ -82,11 +82,26 @@ function isForward(to, from) {
     return true
 }
 
+const scrollBehavior = to => {
+    const position = {}
+    if (to.hash) {
+        position.selector = to.hash
+    }
+    // if (to.matched.some(mm => mm.meta.scrollToTop)) {
+    //     position.x = 0
+    //     position.y = 0
+    // }
+    position.x = 0
+    position.y = 0
+    return position
+}
+
 export function createRouter() {
     const router = new Router({
 
         // history 模式，需要服务器后端配合做路由代理，将所有的前端路由同步代理到 /
         mode: 'history',
+        scrollBehavior,
         routes: [
             { name:'index', path: '/', component: index },
             { name:'article', path: '/article/:id', component: article, meta: { notKeepAlive: true } },
